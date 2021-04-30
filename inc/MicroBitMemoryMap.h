@@ -25,6 +25,8 @@ DEALINGS IN THE SOFTWARE.
 #ifndef MICROBIT_MEMORY_MAP_H
 #define MICROBIT_MEMORY_MAP_H
 
+#if CONFIG_ENABLED(DEVICE_BLE)
+
 #include "MicroBitConfig.h"
 #include "ManagedString.h"
 #include "ErrorNo.h"
@@ -131,4 +133,5 @@ class MicroBitMemoryMap
     int processRecord(uint32_t *address);
 };
 
+#endif
 #endif

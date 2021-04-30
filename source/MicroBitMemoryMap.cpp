@@ -32,6 +32,8 @@ DEALINGS IN THE SOFTWARE.
 */
 
 #include "MicroBitConfig.h"
+
+#if CONFIG_ENABLED(DEVICE_BLE)
 #include "MicroBitMemoryMap.h"
 #include "MicroBitFlash.h"
 #include "MicroBitSerial.h"
@@ -215,3 +217,5 @@ int MicroBitMemoryMap::processRecord(uint32_t *address) {
     
     return MICROBIT_OK;
 }
+
+#endif

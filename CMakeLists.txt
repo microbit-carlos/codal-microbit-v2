@@ -28,7 +28,7 @@ target_link_libraries(
     codal-microbit-v2
     codal-nrf52
     codal-core
-    codal-microbit-nrf5sdk
+    # codal-microbit-nrf5sdk
     ${LIB_OBJECT_FILES}
     ${LIB_ARCHIVE_FILES}
 )

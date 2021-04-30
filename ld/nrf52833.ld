@@ -1,5 +1,6 @@
 MEMORY
 {
+  /*
   MBR (rx) : ORIGIN = 0x0000, LENGTH = 0x1000
   SD (rx) : ORIGIN = 0x1000, LENGTH = 0x1B000
   FLASH (rx) : ORIGIN = 0x1C000, LENGTH = 0x77000 - 0x1C000
@@ -7,11 +8,15 @@ MEMORY
   SETTINGS (rx) : ORIGIN = 0x7E000, LENGTH = 0x2000
   UICR (rx) : ORIGIN = 0x10001014, LENGTH = 0x8
   RAM (rwx) : ORIGIN = 0x20002030, LENGTH = 0x20020000 - 0x20002030
+  */
+  FLASH (rx) : ORIGIN = 0x0000, LENGTH = 0x80000
+  RAM (rwx) : ORIGIN = 0x20000000, LENGTH = 0x20000
 }
 OUTPUT_FORMAT ("elf32-littlearm", "elf32-bigarm", "elf32-littlearm")
 ENTRY(Reset_Handler)
 SECTIONS
 {
+    /*
     . = ALIGN(4);
     .mbr :
     {
@@ -41,7 +46,7 @@ SECTIONS
     {
         KEEP(*(.settings))
     } > SETTINGS
-    
+    */
     .text :
     {
         KEEP(*(.isr_vector))

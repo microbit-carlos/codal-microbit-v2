@@ -12,7 +12,7 @@
         "CODAL_TIMESTAMP": "uint64_t", 
         "CONFIG_GPIO_AS_PINRESET": 1, 
         "CONFIG_NFCT_PINS_AS_GPIOS": 1, 
-        "DEVICE_BLE": 1, 
+        "DEVICE_BLE": 0, 
         "DEVICE_COMPONENT_COUNT": 60, 
         "DEVICE_DEFAULT_PULLMODE": "PullMode::Down", 
         "DEVICE_DEFAULT_SERIAL_MODE": "SYNC_SLEEP", 
@@ -44,7 +44,7 @@
     }, 
     "cpp_flags": "-std=c++11 -fwrapv -fno-rtti -fno-threadsafe-statics -fno-exceptions -fno-unwind-tables -Wl,--gc-sections -Wl,--sort-common -Wl,--sort-section=alignment -Wno-array-bounds", 
     "cpu_opts": "-mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=softfp", 
-    "definitions": "-DAPP_TIMER_V2 -DAPP_TIMER_V2_RTC1_ENABLED -DNRF_DFU_TRANSPORT_BLE=1 -DSOFTDEVICE_PRESENT -DNRF52833_XXAA -DNRF52833 -DTARGET_MCU_NRF52833 -DNRF5 -DNRF52833 -D__CORTEX_M4 -DS113 -DTOOLCHAIN_GCC -D__START=target_start", 
+    "definitions": "-DAPP_TIMER_V2 -DAPP_TIMER_V2_RTC1_ENABLED -DNRF52833_XXAA -DNRF52833 -DTARGET_MCU_NRF52833 -DNRF5 -DNRF52833 -D__CORTEX_M4 -DTOOLCHAIN_GCC -D__START=target_start -DMICROBIT_BOOTLOADER_ADDRESS=0x80000", 
     "device": "MICROBIT", 
     "generate_bin": true, 
     "generate_hex": true, 
@@ -60,12 +60,6 @@
             "name": "codal-nrf52", 
             "type": "git", 
             "url": "https://github.com/lancaster-university/codal-nrf52"
-        }, 
-        {
-            "branch": "691869a8261e08b283deb0e2267fae3c00c17dae", 
-            "name": "codal-microbit-nrf5sdk", 
-            "type": "git", 
-            "url": "https://github.com/microbit-foundation/codal-microbit-nrf5sdk"
         }
     ], 
     "linker_flags": "-Wl,--no-wchar-size-warning -Wl,--gc-sections -Wl,--wrap,atexit -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wl,--start-group -lstdc++ -lsupc++ -lm -lc -lgcc -lnosys -Wl,--end-group", 

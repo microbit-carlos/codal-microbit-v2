@@ -5,8 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "codal-core": "git@github.com:lancaster-university/codal-core.git#master",
-    "codal-nrf52": "git@github.com:lancaster-university/codal-nrf52.git#master",
-    "codal-microbit-nrf5sdk": "git@github.com:microbit-foundation/codal-microbit-nrf5sdk.git#master"
+    "codal-nrf52": "git@github.com:lancaster-university/codal-nrf52.git#master"
   },
   "targetDependencies": {},
   "extraIncludes": [
