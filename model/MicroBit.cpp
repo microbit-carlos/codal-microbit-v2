@@ -30,6 +30,8 @@ DEALINGS IN THE SOFTWARE.
 
 using namespace codal;
 
+volatile uint8_t array_to_take_space[4000] = {0};
+
 //
 // Matrix layout model for LED Matrix
 //
@@ -91,6 +93,9 @@ MicroBit::MicroBit() :
 {
     // Clear our status
     status = 0;
+
+    for (int i=0; i < 4000; i++)
+        array_to_take_space[i] = i;
 
     /*
     // Ensure NFC pins are configured as GPIO. If not, update the non-volatile UICR.
