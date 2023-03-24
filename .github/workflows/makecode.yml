@@ -16,28 +16,14 @@ jobs:
     name: Build MakeCode ${{ matrix.pxt-flags && '(nodocker)' }}
     runs-on: ubuntu-22.04
     steps:
-      - name: Setup Python 3.7
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.7'
       - name: Setup arm-none-eabi-gcc v10.3
         if: ${{ matrix.pxt-flags }}
         uses: carlosperate/arm-none-eabi-gcc-action@v1
         with:
           release: 10.3-2021.10
-      - name: Install Yotta, Ninja v1.10 & CMake v3.22 via PyPI
+      - name: Install Ninja v1.10 & CMake v3.22 via PyPI
         if: ${{ matrix.pxt-flags }}
-        run: |
-          # Newer pip needed to install newer wheels type for cmsis-pack-manager
-          python -m pip install --upgrade pip
-          # project-generator==0.8.17 and MarkupSafe < 2.0 needed for Yotta
-          python -m pip install project-generator==0.8.17 MarkupSafe==1.1.1
-          python -m pip install ninja==1.10.2.2 cmake==3.22.1 yotta
-      - name: Install srecord
-        if: ${{ matrix.pxt-flags }}
-        run: |
-          sudo apt update
-          sudo apt install srecord
+        run: python -m pip install ninja==1.10.2.2 cmake==3.22.1
       - name: Setup Node.js v16
         uses: actions/setup-node@v3
         with:
@@ -75,7 +61,6 @@ jobs:
           except KeyError as e:
               msg_exit('The pxt-microbit/pxtarget.json structure has changed and expected keys are not found.')
           else:
-              mbdal['compileService'] = { 'dockerArgs' : ['--env', 'YOTTA_GITHUB_AUTHTOKEN=${{ secrets.YOTTA_GITHUB_AUTHTOKEN }}'] }
               mbcodal['compileService']['codalTarget']['url'] = mbcodal['compileService']['codalTarget']['url'].replace(
                   'lancaster-university/codal-microbit-v2', '${GITHUB_REPOSITORY}'
               )
@@ -91,6 +76,4 @@ jobs:
         run: |
           chmod -R a+rwx .
           umask 0000
-          ${{ matrix.pxt-flags }} pxt buildtarget --local
-        env:
-          YOTTA_GITHUB_AUTHTOKEN: ${{ secrets.YOTTA_GITHUB_AUTHTOKEN }}
+          PXT_COMPILE_SWITCHES=csv---mbcodal ${{ matrix.pxt-flags }} pxt buildtarget --local
